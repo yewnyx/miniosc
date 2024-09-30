@@ -84,6 +84,8 @@ void minioscClose( miniosc * osc );
 
 #if defined(WINDOWS) || defined(WIN32) || defined(WIN64) || defined(_WIN32) || defined(_WIN64)|| defined(_WINDOWS )
 #define MINIOSCWIN 1
+#elif defined(ESP_PLATFORM)
+#define MINIOSCESP 1
 #endif
 
 #ifdef MINIOSCWIN
@@ -91,6 +93,8 @@ void minioscClose( miniosc * osc );
 	#include <Windows.h>
 	#define socklen_t int
 	#define MSG_NOSIGNAL 0
+#elif MINIOSCESP
+	#include "lwip/sockets.h"
 #else
 	#include <string.h>
 	#include <unistd.h>
